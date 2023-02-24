@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:course/pizza.dart';
+//import 'package:course/home.dart';
+import 'package:course/login.dart';
+import 'package:course/home.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -10,8 +13,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false, home: WidgetPizza(),
+    return MaterialApp(
+            routes: {
+        'home': (context) => const WidgetHome(),
+        'login': (context) => const WidgetLogin(),
+      },
+      debugShowCheckedModeBanner: false, initialRoute:'home' ,
     );
   }
 }
