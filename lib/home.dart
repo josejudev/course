@@ -61,7 +61,9 @@ class WidgetHome extends StatelessWidget {
                 Container(
 
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, 'singUp');
+                    },
                     style: ElevatedButton.styleFrom(
                       shadowColor: Colors.blue,
                       elevation: 4,

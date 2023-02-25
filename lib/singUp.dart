@@ -1,9 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class WidgetLogin extends StatelessWidget {
-  const WidgetLogin({Key? key}) : super(key: key);
+class WidgetSingUp extends StatefulWidget {
+  const WidgetSingUp({Key? key}) : super(key: key);
 
+  @override
+  State<WidgetSingUp> createState() => _WidgetSignUpState();
+}
+
+class _WidgetSignUpState extends State<WidgetSingUp> {
+  DateTime _dateTime = DateTime.now();
+  
+  void _showDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025), 
+    ).then((value) => {
+      setState((){
+        _dateTime = value!;
+      })
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +39,7 @@ class WidgetLogin extends StatelessWidget {
             backgroundColor: Colors.white,
             shape: const CircleBorder(),
           ),
-          child:  const Icon(
+          child: const Icon(
             Icons.arrow_back,
             color: Colors.black,
           ),
@@ -35,23 +54,22 @@ class WidgetLogin extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 30),
             child: Text(
-              'Welcome Back! is good to see you again',
+              'Hello! Register to get started',
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
-
           const SizedBox(
-            height: 40,
+            height: 10,
           ),
-          //Email
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Column(
               children: [
                 Container(
+                  height: 60,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
@@ -60,12 +78,76 @@ class WidgetLogin extends StatelessWidget {
                     ),
                   ),
                   child: const Padding(
-
                     padding: EdgeInsets.all(8.0),
                     child: TextField(
-
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 20,
+                      ),
+                      decoration: InputDecoration(
+                        hintText: 'Enter your username',
+                        prefixIcon: Icon(
+                          FontAwesomeIcons.at,
+                          color: Colors.grey,
+                        ),
+                        border: InputBorder.none,
+                      ),
+                      obscureText: false,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 2,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: TextField(
+                      onTap: (){_showDatePicker();},
+                      keyboardType: TextInputType.none,
+                      style: TextStyle(
+                        fontSize: 20,
+                        
+                      ),
+                      decoration: InputDecoration(
+                        hintText: "Select birth date",
+                  
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.calendar_today),
+                          onPressed: () {
+                            _showDatePicker();
+                          },
+                        ),
+                        border: InputBorder.none,
+                      ),
+                      obscureText: false,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 2,
+                    ),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: TextField(
+                      style: TextStyle(
+                        fontSize: 20,
                       ),
                       decoration: InputDecoration(
                         hintText: 'Enter your email',
@@ -83,6 +165,7 @@ class WidgetLogin extends StatelessWidget {
                   height: 20,
                 ),
                 Container(
+                  height: 60,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
@@ -93,11 +176,37 @@ class WidgetLogin extends StatelessWidget {
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: TextField(
-                      style: TextStyle(
-                        fontSize: 18
-                      ),
+                      style: TextStyle(fontSize: 18),
                       decoration: InputDecoration(
                         hintText: 'Enter your password',
+                        suffixIcon: Icon(
+                          Icons.remove_red_eye,
+                          color: Colors.grey,
+                        ),
+                        border: InputBorder.none,
+                      ),
+                      obscureText: true,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 2,
+                    ),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: TextField(
+                      style: TextStyle(fontSize: 18),
+                      decoration: InputDecoration(
+                        hintText: 'Confirm password',
                         suffixIcon: Icon(
                           Icons.remove_red_eye,
                           color: Colors.grey,
@@ -120,7 +229,7 @@ class WidgetLogin extends StatelessWidget {
                   ),
                   child: const Center(
                     child: Text(
-                      'Login',
+                      'Register',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -136,7 +245,7 @@ class WidgetLogin extends StatelessWidget {
                   children: const [
                     Padding(
                       padding: EdgeInsets.all(20.0),
-                      child: Text('Login with social media',
+                      child: Text('Register with social media',
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
@@ -152,7 +261,7 @@ class WidgetLogin extends StatelessWidget {
                     //sign in with google, facebook, twitter
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                       Padding(
+                      Padding(
                         padding: EdgeInsets.all(1.0),
                         child: Icon(
                           FontAwesomeIcons.facebook,
@@ -160,10 +269,10 @@ class WidgetLogin extends StatelessWidget {
                           size: 40,
                         ),
                       ),
-                       SizedBox(
+                      SizedBox(
                         width: 10,
                       ),
-                       Padding(
+                      Padding(
                         padding: EdgeInsets.all(1.0),
                         child: Image(
                           image: NetworkImage(
@@ -172,10 +281,10 @@ class WidgetLogin extends StatelessWidget {
                           height: 56,
                         ),
                       ),
-                       SizedBox(
+                      SizedBox(
                         width: 10,
                       ),
-                       Padding(
+                      Padding(
                         padding: EdgeInsets.all(3.0),
                         child: Icon(
                           FontAwesomeIcons.apple,

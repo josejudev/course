@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 //import 'package:course/home.dart';
 import 'package:course/login.dart';
 import 'package:course/home.dart';
+import 'package:course/singUp.dart';
 
 
 void main() {
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
             routes: {
         'home': (context) => const WidgetHome(),
         'login': (context) => const WidgetLogin(),
+        'singUp':(context) => const WidgetSingUp()
       },
       debugShowCheckedModeBanner: false, initialRoute:'home' ,
     );
