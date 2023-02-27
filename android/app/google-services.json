@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "787881033776",
+    "project_id": "flower-house-35e8c",
+    "storage_bucket": "flower-house-35e8c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:787881033776:android:db36f59f72bccc157a2df5",
+        "android_client_info": {
+          "package_name": "com.example.course"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "787881033776-fv9dcu1o7nm3kih7v521jfauca8fhs7t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLFeiav0YeimRlQEL47PH0gWvTJtxWd6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "787881033776-fv9dcu1o7nm3kih7v521jfauca8fhs7t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

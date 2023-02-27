@@ -9,20 +9,7 @@ class WidgetSingUp extends StatefulWidget {
 }
 
 class _WidgetSignUpState extends State<WidgetSingUp> {
-  DateTime _dateTime = DateTime.now();
-  
-  void _showDatePicker() {
-    showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2025), 
-    ).then((value) => {
-      setState((){
-        _dateTime = value!;
-      })
-    });
-  }
+  final TextEditingController _dateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -108,21 +95,45 @@ class _WidgetSignUpState extends State<WidgetSingUp> {
                     ),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: TextField(
-                      onTap: (){_showDatePicker();},
+                      controller: _dateController,
+                      onTap: () async {
+                        DateTime? dateSelect = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(1900),
+                            lastDate: DateTime.now());
+                        if (dateSelect != null) {
+                          setState(() {
+                            //format date whit class
+                            _dateController.text =
+                                '${dateSelect.day}-${dateSelect.month}-${dateSelect.year}';
+                          });
+                        }
+                      },
                       keyboardType: TextInputType.none,
-                      style: TextStyle(
-                        fontSize: 20,
+                      style: const TextStyle(
                         
+                        fontSize: 20,
                       ),
                       decoration: InputDecoration(
                         hintText: "Select birth date",
-                  
                         suffixIcon: IconButton(
-                          icon: Icon(Icons.calendar_today),
-                          onPressed: () {
-                            _showDatePicker();
+                          icon: const Icon(Icons.calendar_today),
+                          onPressed: () async {
+                            DateTime? dateSelect = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1900),
+                                lastDate: DateTime.now());
+                            if (dateSelect != null) {
+                              setState(() {
+                                //format date whit class
+                                _dateController.text =
+                                    '${dateSelect.day}-${dateSelect.month}-${dateSelect.year}';
+                              });
+                            }
                           },
                         ),
                         border: InputBorder.none,
@@ -146,6 +157,7 @@ class _WidgetSignUpState extends State<WidgetSingUp> {
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: TextField(
+                      keyboardType: TextInputType.emailAddress,
                       style: TextStyle(
                         fontSize: 20,
                       ),
@@ -186,6 +198,7 @@ class _WidgetSignUpState extends State<WidgetSingUp> {
                         border: InputBorder.none,
                       ),
                       obscureText: true,
+                      obscuringCharacter: '*',
                     ),
                   ),
                 ),
@@ -214,6 +227,7 @@ class _WidgetSignUpState extends State<WidgetSingUp> {
                         border: InputBorder.none,
                       ),
                       obscureText: true,
+                      obscuringCharacter: '*',
                     ),
                   ),
                 ),
@@ -303,3 +317,6 @@ class _WidgetSignUpState extends State<WidgetSingUp> {
     );
   }
 }
+
+
+//create a class to format date
