@@ -1,4 +1,7 @@
+import 'package:course/login.dart';
+import 'package:course/singUp.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class WidgetHome extends StatelessWidget {
   const WidgetHome({Key? key}) : super(key: key);
@@ -42,7 +45,7 @@ class WidgetHome extends StatelessWidget {
                   child: Center(
                     child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, 'login');
+                          Get.to(() =>  WidgetLogin());
                         },
                         child: const Text('Login'),
                         style: ElevatedButton.styleFrom(
@@ -62,7 +65,8 @@ class WidgetHome extends StatelessWidget {
 
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, 'singUp');
+                      Get.to(() =>  const WidgetSingUp());
+
                     },
                     style: ElevatedButton.styleFrom(
                       shadowColor: Colors.blue,

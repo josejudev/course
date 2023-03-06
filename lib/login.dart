@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'controllers/sign_controller.dart';
 
 class WidgetLogin extends StatelessWidget {
-  const WidgetLogin({Key? key}) : super(key: key);
+
+  final controller = Get.put(SingInController());
+   WidgetLogin({Key? key}) : super(key: key);
 
 
   @override
@@ -59,15 +63,18 @@ class WidgetLogin extends StatelessWidget {
                       width: 2,
                     ),
                   ),
-                  child: const Padding(
+                  child:  Padding(
 
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: TextField(
-
-                      style: TextStyle(
+                      onChanged: (v){
+                        controller.handleEmail(v);
+                      
+                      },
+                      style: const TextStyle(
                         fontSize: 18,
                       ),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Enter your email',
                         suffixIcon: Icon(
                           Icons.mail_outline,
@@ -90,13 +97,16 @@ class WidgetLogin extends StatelessWidget {
                       width: 2,
                     ),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
+                  child:  Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: TextField(
-                      style: TextStyle(
+                      onChanged: (v){
+                        controller.handlePassword(v);
+                      },
+                      style: const TextStyle(
                         fontSize: 18
                       ),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Enter your password',
                         suffixIcon: Icon(
                           Icons.remove_red_eye,
@@ -111,22 +121,19 @@ class WidgetLogin extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Container(
-                  width: double.infinity,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: const Color(0xff1E232C),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Login',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
+                ElevatedButton(
+                    onPressed: () {
+                      controller.handleSignIn();
+                    },
+                    child: Text('Login'),
+                    style: ElevatedButton.styleFrom(
+                      elevation: 4,
+                      backgroundColor: const Color(0xff1E232C),
+                      fixedSize: const Size(300, 50),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
-                    ),
-                  ),
+                    )
                 ),
                 const SizedBox(
                   height: 20,

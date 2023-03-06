@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 //import 'package:course/home.dart';
-import 'package:course/login.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:course/home.dart';
-import 'package:course/singUp.dart';
-
+import 'package:get/get.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -14,13 +15,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-            routes: {
-        'home': (context) => const WidgetHome(),
-        'login': (context) => const WidgetLogin(),
-        'singUp':(context) => const WidgetSingUp()
-      },
-      debugShowCheckedModeBanner: false, initialRoute:'home' ,
+    return const GetMaterialApp(
+      title: 'Curso',
+      debugShowCheckedModeBanner: false,
+      home: WidgetHome(),
     );
   }
 }

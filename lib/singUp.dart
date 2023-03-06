@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'controllers/sign_up_controller.dart';
 
 class WidgetSingUp extends StatefulWidget {
-  const WidgetSingUp({Key? key}) : super(key: key);
+
+  const  WidgetSingUp({Key? key}) : super(key: key);
 
   @override
   State<WidgetSingUp> createState() => _WidgetSignUpState();
 }
 
 class _WidgetSignUpState extends State<WidgetSingUp> {
+  final controller = Get.put(SignUpController());
+
   final TextEditingController _dateController = TextEditingController();
 
   @override
@@ -52,7 +57,7 @@ class _WidgetSignUpState extends State<WidgetSingUp> {
             height: 10,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
+            padding:  const EdgeInsets.symmetric(horizontal: 30),
             child: Column(
               children: [
                 Container(
@@ -64,13 +69,15 @@ class _WidgetSignUpState extends State<WidgetSingUp> {
                       width: 2,
                     ),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
+                  child:  Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: TextField(
-                      style: TextStyle(
+                      onChanged: controller.handleUsername,
+
+                      style: const TextStyle(
                         fontSize: 20,
                       ),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Enter your username',
                         prefixIcon: Icon(
                           FontAwesomeIcons.at,
@@ -154,14 +161,15 @@ class _WidgetSignUpState extends State<WidgetSingUp> {
                       width: 2,
                     ),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
+                  child:  Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: TextField(
+                      onChanged: controller.handleEmail,
                       keyboardType: TextInputType.emailAddress,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                       ),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Enter your email',
                         suffixIcon: Icon(
                           Icons.mail_outline,
@@ -185,11 +193,13 @@ class _WidgetSignUpState extends State<WidgetSingUp> {
                       width: 2,
                     ),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
+                  child:  Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: TextField(
-                      style: TextStyle(fontSize: 18),
-                      decoration: InputDecoration(
+                      onChanged: controller.handlePassword,
+
+                      style: const TextStyle(fontSize: 18),
+                      decoration: const InputDecoration(
                         hintText: 'Enter your password',
                         suffixIcon: Icon(
                           Icons.remove_red_eye,
@@ -234,22 +244,19 @@ class _WidgetSignUpState extends State<WidgetSingUp> {
                 const SizedBox(
                   height: 20,
                 ),
-                Container(
-                  width: double.infinity,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: const Color(0xff1E232C),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Register',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
+                ElevatedButton(
+                    onPressed: () {
+                  controller.handleSignUp();
+                    },
+                    child: Text('Register'),
+                    style: ElevatedButton.styleFrom(
+                      elevation: 4,
+                      backgroundColor: const Color(0xff1E232C),
+                      fixedSize: const Size(300, 50),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
-                    ),
-                  ),
+                    )
                 ),
                 const SizedBox(
                   height: 20,
